@@ -190,13 +190,12 @@
     text-align: left;
     color: #1e293b;
     font-weight: 700;
-    padding-left: 0;
 }
 
 .ads-grid {
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1.5rem;
     justify-content: start;
 }
@@ -205,25 +204,40 @@
     background: #fff;
     border-radius: 12px;
     overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    border: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef2f6;
 }
 
 .ad-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 .ad-card img {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
+    height: 180px; 
+    
+    /* Adiciona o respiro lateral e superior igual ao protótipo */
+    padding: 1.5rem; 
+    
+    /* Garante que a imagem inteira apareça sem cortes */
+    object-fit: contain; 
+    
+    /* Fundo branco para combinar com o card, como no seu design */
+    background-color: #fff; 
+    
+    display: block;
+    box-sizing: border-box;
+    
+    /* Linha sutil abaixo da imagem para separar do texto, se desejar */
+    border-bottom: 1px solid #f1f5f9;
 }
 
 .ad-info {
-    padding: 1.25rem;
+    padding: 1rem;
 }
 
 .ad-category {
@@ -231,27 +245,20 @@
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .ad-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
-    margin: 0.5rem 0;
+    margin: 0.4rem 0;
     color: #1e293b;
-}
-
-.ad-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    background-color: #f1f5f9;
-    display: block;
 }
 
 .ad-price {
     color: #003b82;
     font-weight: 800;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
 }
 
 .ad-seller {
@@ -259,8 +266,8 @@
     align-items: center;
     gap: 0.5rem;
     font-size: 0.8rem;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
     color: #64748b;
-    padding-top: 1rem;
+    padding-top: 0.8rem;
     border-top: 1px solid #f1f5f9;
 }

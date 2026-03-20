@@ -48,9 +48,8 @@ const CriarAnuncio = () => {
         }
     };
 
-    // Simulação de upload de imagens via URL
     const handleImageAdd = () => {
-        const url = prompt("Para este protótipo, cole a URL de uma imagem (Ex: Unsplash):");
+        const url = prompt("Cole aqui a URL de uma imagem (Ex: Unsplash):");
         if (url && formData.imagens.length < 5) {
             setFormData({ ...formData, imagens: [...formData.imagens, url] });
         }
@@ -66,7 +65,6 @@ const CriarAnuncio = () => {
             vendedor: usuarioLogado.nome,
             vendedorId: usuarioLogado.id,
             dataCriacao: new Date().toISOString(),
-            // Define a primeira imagem da lista como a principal para a Home
             imagem: formData.imagens[0] || 'https://via.placeholder.com/300?text=Sem+Foto'
         };
 
@@ -107,7 +105,6 @@ const CriarAnuncio = () => {
                     <div className="form-column">
                         <div className="card-form section-info">
                             <div className="input-group">
-                                {/* Label e Placeholder Dinâmicos */}
                                 <label>
                                     {formData.tipo === 'Serviço' ? 'Qual serviço você oferece?' : 'O que vc quer vender?'}
                                 </label>
@@ -167,7 +164,6 @@ const CriarAnuncio = () => {
 
                         <div className="card-form section-desc">
                             <div className="input-group">
-                                {/* Descrição adaptada ao contexto */}
                                 <label>
                                     {formData.tipo === 'Serviço' ? 'Forneça detalhes do serviço' : 'Forneça detalhes do produto'}
                                 </label>
@@ -202,7 +198,6 @@ const CriarAnuncio = () => {
 
                         <div className="card-form section-loc">
                             <div className="input-group">
-                                {/* Localização Dinâmica baseada no Tipo */}
                                 <label>{formData.tipo === 'Serviço' ? 'Local de Atendimento' : 'Localização da Entrega'}</label>
                                 <div className="select-with-icon">
                                     <MapPin size={18} className="icon-input" />
