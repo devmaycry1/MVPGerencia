@@ -1,0 +1,13 @@
+{
+  "usuarios": [
+    {
+      "id": "584a",
+      "nome": "Carlos Luiz",
+      "email": "carlos.luiz@dcx.ufpb.br",
+      "curso": "Sistemas de Informação",
+      "matricula": "2022063060",
+      "senha": "Teste1234"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
