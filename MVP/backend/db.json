@@ -9,5 +9,40 @@
       "senha": "Teste1234"
     }
   ],
+  "anuncios": [
+    {
+      "id": "1",
+      "titulo": "Notebook Dell Inspiron",
+      "preco": 2300,
+      "categoria": "Eletrônicos",
+      "imagem": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
+      "vendedor": "João Silva"
+    },
+    {
+      "id": "2",
+      "titulo": "Introdução ao Cálculo",
+      "preco": 55,
+      "categoria": "Livros",
+      "imagem": "https://images.unsplash.com/photo-1543002588-bfa74002ed7e",
+      "vendedor": "Roberto Dias"
+    },
+    {
+      "id": "ae79",
+      "titulo": "Cadeira de Escritório",
+      "categoria": "Outros",
+      "preco": 250,
+      "tipo": "Produto",
+      "descricao": "Cadeira de escritório usada, mas em um bom estado.",
+      "localizacao": "Campus IV - Rio Tinto",
+      "telefone": "83982136233",
+      "imagens": [
+        "\"https://images.unsplash.com/photo-1580480055273-228ff5388ef8\""
+      ],
+      "vendedor": "Carlos Luiz",
+      "vendedorId": "584a",
+      "dataCriacao": "2026-03-20T18:06:59.389Z",
+      "imagem": "\"https://images.unsplash.com/photo-1580480055273-228ff5388ef8\""
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
