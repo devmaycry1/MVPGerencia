@@ -120,7 +120,6 @@ const EditarAnuncio = () => {
                             </div>
                         </div>
 
-                        {/* CORREÇÃO AQUI: Adicionado input-group para alinhar a descrição */}
                         <div className="card-form">
                             <div className="input-group">
                                 <label>Descrição Detalhada</label>

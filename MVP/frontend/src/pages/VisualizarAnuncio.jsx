@@ -14,7 +14,6 @@ const VisualizarAnuncio = () => {
             .then(res => res.json())
             .then(data => {
                 setAnuncio(data);
-                // Define a primeira imagem da lista como principal
                 setImagemPrincipal(data.imagens && data.imagens.length > 0 ? data.imagens[0] : data.imagem);
             })
             .catch(err => console.error("Erro ao carregar anúncio:", err));
@@ -37,7 +36,7 @@ const VisualizarAnuncio = () => {
             </header>
 
             <main className="view-container">
-                {/* Breadcrumb */}
+               
                 <nav className="breadcrumb">
                     <span onClick={() => navigate('/')}>Home</span>
                     <ChevronRight size={14} />
@@ -47,13 +46,13 @@ const VisualizarAnuncio = () => {
                 </nav>
 
                 <div className="product-grid">
-                    {/* Coluna da Esquerda: Galeria */}
+                
                     <section className="gallery-section">
                         <div className="main-image-container">
                             <img src={imagemPrincipal} alt={anuncio.titulo} />
                         </div>
                         <div className="thumbnails-grid">
-                            {/* Mostra as 5 imagens cadastradas se existirem */}
+                    
                             {anuncio.imagens && anuncio.imagens.map((img, idx) => (
                                 <div
                                     key={idx}
@@ -66,7 +65,6 @@ const VisualizarAnuncio = () => {
                         </div>
                     </section>
 
-                    {/* Coluna da Direita: Infos e Contato */}
                     <section className="info-section">
                         <span className="badge-usado">{anuncio.tipo}</span>
                         <h1 className="product-title">{anuncio.titulo}</h1>

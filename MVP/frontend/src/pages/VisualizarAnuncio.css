@@ -34,7 +34,6 @@
     align-items: start;
 }
 
-/* Galeria */
 .main-image-container {
     background: #fff;
     border-radius: 12px;
@@ -82,7 +81,6 @@
     object-fit: contain;
 }
 
-/* Infos */
 .badge-usado {
     background: #dcfce7;
     color: #166534;

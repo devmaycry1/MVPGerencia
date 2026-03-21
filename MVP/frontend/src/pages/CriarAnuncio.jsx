@@ -5,8 +5,6 @@ import './CriarAnuncio.css';
 
 const CriarAnuncio = () => {
     const navigate = useNavigate();
-    
-    // Recupera o usuário logado do localStorage para vincular ao anúncio
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioMercadoDCX'));
 
     const [formData, setFormData] = useState({
@@ -27,22 +25,21 @@ const CriarAnuncio = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    // Lógica para alternar entre Produto e Serviço
     const handleTipoChange = (novoTipo) => {
         if (novoTipo === 'Serviço') {
             setFormData({
                 ...formData,
                 tipo: 'Serviço',
-                categoria: 'Serviços', // Seleção automática
-                localizacao: 'Rio Tinto', // Localização padrão para serviço
-                titulo: '' // Limpa para novo placeholder
+                categoria: 'Serviços', 
+                localizacao: 'Rio Tinto',
+                titulo: ''
             });
         } else {
             setFormData({
                 ...formData,
                 tipo: 'Produto',
                 categoria: '',
-                localizacao: 'Campus IV - Rio Tinto', // Localização padrão para produto
+                localizacao: 'Campus IV - Rio Tinto', 
                 titulo: ''
             });
         }

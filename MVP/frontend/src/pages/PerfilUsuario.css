@@ -309,7 +309,6 @@
     font-weight: 700;
 }
 
-/* Estilo dos Chips de Filtro */
 .status-chips {
     display: flex;
     gap: 0.8rem;

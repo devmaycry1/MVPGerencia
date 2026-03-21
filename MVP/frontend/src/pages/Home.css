@@ -255,10 +255,9 @@
     border-top: 1px solid #f1f5f9;
 }
 
-/* ESTILOS PARA RESULTADOS VAZIOS */
 .empty-results {
     width: 100%;
-    min-height: 300px; /* Impede o footer de subir */
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -298,7 +297,6 @@
     background: #002855;
 }
 
-/* FOOTER */
 .footer {
     background: #003b82;
     color: white;
