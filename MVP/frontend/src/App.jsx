@@ -4,8 +4,8 @@ import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Home from './pages/Home';
 import CriarAnuncio from './pages/CriarAnuncio';
-
-const DetalhesAnuncio = () => <div style={{ padding: '2rem', fontFamily: 'Inter' }}><h1>Tela: Detalhes do Anúncio (Em breve)</h1></div>;
+import VisualizarAnuncio from './pages/VisualizarAnuncio';
+import PerfilUsuario from './pages/PerfilUsuario';
 
 const RotaPrivada = ({ children }) => {
   const usuarioLogado = localStorage.getItem('usuarioMercadoDCX');
@@ -44,11 +44,12 @@ const App = () => {
           path="/anuncio/:id"
           element={
             <RotaPrivada>
-              <DetalhesAnuncio />
+              <VisualizarAnuncio />
             </RotaPrivada>
           }
         />
         <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/perfil" element={<RotaPrivada><PerfilUsuario /></RotaPrivada>} />
       </Routes>
     </BrowserRouter>
   );

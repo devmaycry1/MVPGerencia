@@ -46,7 +46,8 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="header-right">
+                <div className="header-right" onClick={() => navigate('/perfil')}
+                    style={{ cursor: 'pointer' }}>
                     <Bell size={20} />
                     <div className="user-avatar">
                         <User size={20} />
