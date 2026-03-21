@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Store, ShoppingBag, Search, Bell, User, Filter } from 'lucide-react';
+import { Store, ShoppingBag, Search, Bell, User, Filter, PackageSearch } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
@@ -12,13 +12,14 @@ const Home = () => {
     useEffect(() => {
         fetch('http://localhost:3001/anuncios')
             .then(res => res.json())
-            .then(data => setAnuncios(data));
+            .then(data => setAnuncios(data))
+            .catch(err => console.error("Erro ao carregar anúncios:", err));
     }, []);
 
     const anunciosFiltrados = anuncios.filter(item => {
         const matchesBusca = item.titulo.toLowerCase().includes(busca.toLowerCase());
         const matchesCategoria = categoriaSel === '' || item.categoria === categoriaSel;
-        const estaAtivo = item.status !== 'Vendido'; // NOVA REGRA
+        const estaAtivo = item.status !== 'Vendido';
         return matchesBusca && matchesCategoria && estaAtivo;
     });
 
@@ -90,21 +91,33 @@ const Home = () => {
 
                     <section className="recent-ads">
                         <h2>Anúncios Recentes</h2>
-                        <div className="ads-grid">
-                            {anunciosFiltrados.map(ad => (
-                                <div key={ad.id} className="ad-card" onClick={() => navigate(`/anuncio/${ad.id}`)}>
-                                    <img src={ad.imagem} alt={ad.titulo} />
-                                    <div className="ad-info">
-                                        <span className="ad-category">{ad.categoria.toUpperCase()}</span>
-                                        <h3 className="ad-title">{ad.titulo}</h3>
-                                        <p className="ad-price">R$ {ad.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</p>
-                                        <div className="ad-seller">
-                                            <span>👤 {ad.vendedor}</span>
+                        
+                        {anunciosFiltrados.length > 0 ? (
+                            <div className="ads-grid">
+                                {anunciosFiltrados.map(ad => (
+                                    <div key={ad.id} className="ad-card" onClick={() => navigate(`/anuncio/${ad.id}`)}>
+                                        <img src={ad.imagem} alt={ad.titulo} />
+                                        <div className="ad-info">
+                                            <span className="ad-category">{ad.categoria?.toUpperCase()}</span>
+                                            <h3 className="ad-title">{ad.titulo}</h3>
+                                            <p className="ad-price">R$ {ad.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</p>
+                                            <div className="ad-seller">
+                                                <span>👤 {ad.vendedor}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="empty-results">
+                                <PackageSearch size={64} color="#cbd5e1" />
+                                <h3>Nenhum anúncio encontrado</h3>
+                                <p>Não encontramos resultados para sua busca ou filtro em <strong>{categoriaSel || 'Todas as categorias'}</strong>.</p>
+                                <button className="btn-reset-filters" onClick={() => {setBusca(''); setCategoriaSel('');}}>
+                                    Limpar todos os filtros
+                                </button>
+                            </div>
+                        )}
                     </section>
                 </main>
             </div>

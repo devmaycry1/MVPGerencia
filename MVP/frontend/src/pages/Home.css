@@ -1,8 +1,9 @@
 .home-wrapper {
     background-color: #f8fafc;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
-
 
 .home-header {
     background: #fff;
@@ -51,6 +52,8 @@
     width: 100%;
     margin-right: 0.5rem;
     font-size: 0.9rem;
+    border: none;
+    outline: none;
 }
 
 .home-container {
@@ -61,8 +64,8 @@
     width: 100%;
     box-sizing: border-box;
     align-items: start;
+    flex: 1; /* Garante que o container ocupe o espaço para empurrar o footer */
 }
-
 
 .filters-sidebar {
     background: #fff;
@@ -100,23 +103,9 @@
     color: #334155;
 }
 
-.price-inputs {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.price-inputs input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    text-align: center;
-}
-
 .btn-clear {
     background: none;
+    border: none;
     color: #003b82;
     cursor: pointer;
     font-size: 0.8rem;
@@ -124,6 +113,7 @@
     margin-top: 1.5rem;
     width: 100%;
     text-align: left;
+    padding: 0;
 }
 
 .hero-banner {
@@ -159,6 +149,7 @@
 
 .btn-white {
     background: #fff;
+    border: none;
     color: #003b82;
     padding: 0.75rem 2rem;
     border-radius: 8px;
@@ -209,6 +200,7 @@
     transition: transform 0.2s;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     border: 1px solid #eef2f6;
+    cursor: pointer;
 }
 
 .ad-card:hover {
@@ -219,20 +211,11 @@
 .ad-card img {
     width: 100%;
     height: 180px; 
-    
-    /* Adiciona o respiro lateral e superior igual ao protótipo */
     padding: 1.5rem; 
-    
-    /* Garante que a imagem inteira apareça sem cortes */
     object-fit: contain; 
-    
-    /* Fundo branco para combinar com o card, como no seu design */
     background-color: #fff; 
-    
     display: block;
     box-sizing: border-box;
-    
-    /* Linha sutil abaixo da imagem para separar do texto, se desejar */
     border-bottom: 1px solid #f1f5f9;
 }
 
@@ -270,4 +253,75 @@
     color: #64748b;
     padding-top: 0.8rem;
     border-top: 1px solid #f1f5f9;
+}
+
+/* ESTILOS PARA RESULTADOS VAZIOS */
+.empty-results {
+    width: 100%;
+    min-height: 300px; /* Impede o footer de subir */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #fff;
+    border-radius: 12px;
+    border: 2px dashed #e2e8f0;
+    padding: 3rem;
+    margin-top: 1rem;
+}
+
+.empty-results h3 {
+    margin-top: 1.5rem;
+    color: #1e293b;
+    font-weight: 700;
+}
+
+.empty-results p {
+    color: #64748b;
+    margin-bottom: 2rem;
+    max-width: 400px;
+}
+
+.btn-reset-filters {
+    background: #003b82;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-reset-filters:hover {
+    background: #002855;
+}
+
+/* FOOTER */
+.footer {
+    background: #003b82;
+    color: white;
+    padding: 1rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links span {
+    cursor: pointer;
+    opacity: 0.8;
 }
