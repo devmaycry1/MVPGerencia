@@ -41,7 +41,8 @@
       "vendedor": "Carlos Luiz",
       "vendedorId": "584a",
       "dataCriacao": "2026-03-20T18:06:59.389Z",
-      "imagem": "https://m.media-amazon.com/images/I/61a++2OyOsL.jpg"
+      "imagem": "https://m.media-amazon.com/images/I/61a++2OyOsL.jpg",
+      "status": "Vendido"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

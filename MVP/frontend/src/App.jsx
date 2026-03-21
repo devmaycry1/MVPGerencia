@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import CriarAnuncio from './pages/CriarAnuncio';
 import VisualizarAnuncio from './pages/VisualizarAnuncio';
 import PerfilUsuario from './pages/PerfilUsuario';
+import EditarAnuncio from './pages/EditarAnuncio';
 
 const RotaPrivada = ({ children }) => {
   const usuarioLogado = localStorage.getItem('usuarioMercadoDCX');
@@ -50,6 +51,7 @@ const App = () => {
         />
         <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/perfil" element={<RotaPrivada><PerfilUsuario /></RotaPrivada>} />
+        <Route path="/editar-anuncio/:id" element={<RotaPrivada><EditarAnuncio /></RotaPrivada>} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Store, ShoppingBag } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { obterMensagemErro } from '../utils/validacao'; // Importando a função de validação
+import { obterMensagemErro } from '../utils/validacao';
 import './Cadastro.css';
 
 const Cadastro = () => {

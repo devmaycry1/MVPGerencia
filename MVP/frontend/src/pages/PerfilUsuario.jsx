@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Store, User, Edit2, Home, UserCircle, Plus, ShoppingBag } from 'lucide-react';
+import { Store, Edit2, Home, UserCircle, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import './PerfilUsuario.css';
 
@@ -8,27 +8,37 @@ const PerfilUsuario = () => {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioMercadoDCX'));
     const [meusAnuncios, setMeusAnuncios] = useState([]);
     const [abaAtiva, setAbaAtiva] = useState('meus-anuncios');
+    const [filtroStatus, setFiltroStatus] = useState('todos'); // Novo estado para o filtro
 
     useEffect(() => {
         if (usuarioLogado) {
             fetch(`http://localhost:3001/anuncios?vendedorId=${usuarioLogado.id}`)
                 .then(res => res.json())
-                .then(data => setMeusAnuncios(data))
+                .then(data => {
+                    const ordenados = data.sort((a, b) => (a.status === 'Vendido' ? 1 : -1));
+                    setMeusAnuncios(ordenados);
+                })
                 .catch(err => console.error("Erro ao carregar seus anúncios:", err));
         }
     }, [usuarioLogado?.id]);
 
+    const anunciosExibidos = meusAnuncios.filter(ad => {
+        if (filtroStatus === 'todos') return true;
+        if (filtroStatus === 'ativo') return ad.status !== 'Vendido';
+        if (filtroStatus === 'vendido') return ad.status === 'Vendido';
+        return true;
+    });
+
     return (
         <div className="perfil-wrapper">
             <header className="home-header">
-                <div className="header-left" onClick={() => navigate('/')} style={{cursor: 'pointer'}}>
+                <div className="header-left" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
                     <Store size={24} color="#003b82" />
                     <span className="brand-name">Mercado DCX</span>
                 </div>
             </header>
 
             <main className="perfil-container">
-                {/* Sidebar do Perfil */}
                 <aside className="perfil-sidebar">
                     <div className="perfil-card-info">
                         <div className="avatar-grande">
@@ -51,45 +61,70 @@ const PerfilUsuario = () => {
                     </nav>
                 </aside>
 
-                {/* Conteúdo Principal */}
                 <section className="perfil-content">
                     <div className="tabs-perfil">
-                        <button 
-                            className={abaAtiva === 'meus-anuncios' ? 'active' : ''} 
+                        <button
+                            className={abaAtiva === 'meus-anuncios' ? 'active' : ''}
                             onClick={() => setAbaAtiva('meus-anuncios')}
                         >
                             Meus Anúncios ({meusAnuncios.length})
                         </button>
-                        <button 
-                            className={abaAtiva === 'avaliacoes' ? 'active' : ''} 
+                        <button
+                            className={abaAtiva === 'avaliacoes' ? 'active' : ''}
                             onClick={() => setAbaAtiva('avaliacoes')}
                         >
                             Avaliações
                         </button>
                     </div>
 
-                    <div className="anuncios-ativos-header">
-                        <h3>Anúncios Ativos</h3>
+                    <div className="perfil-status-filter-container">
+                        <div className="filter-header">
+                            <h3>Meus Itens</h3>
+                            <div className="status-chips">
+                                <button 
+                                    className={filtroStatus === 'todos' ? 'chip active' : 'chip'} 
+                                    onClick={() => setFiltroStatus('todos')}
+                                >
+                                    Todos
+                                </button>
+                                <button 
+                                    className={filtroStatus === 'ativo' ? 'chip active' : 'chip'} 
+                                    onClick={() => setFiltroStatus('ativo')}
+                                >
+                                    Ativos
+                                </button>
+                                <button 
+                                    className={filtroStatus === 'vendido' ? 'chip active' : 'chip'} 
+                                    onClick={() => setFiltroStatus('vendido')}
+                                >
+                                    Vendidos
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="perfil-ads-grid">
-                        {meusAnuncios.map(ad => (
-                            <div key={ad.id} className="perfil-ad-card">
-                                <div className="status-badge">ATIVO</div>
+                        {anunciosExibidos.map(ad => (
+                            <div key={ad.id} className={`perfil-ad-card ${ad.status === 'Vendido' ? 'sold-mode' : ''}`}>
+                                <div className={`status-badge ${ad.status === 'Vendido' ? 'sold' : 'active'}`}>
+                                    {ad.status === 'Vendido' ? 'VENDIDO' : 'ATIVO'}
+                                </div>
+
                                 <div className="perfil-ad-img">
                                     <img src={ad.imagem} alt={ad.titulo} />
                                 </div>
+
                                 <div className="perfil-ad-info">
                                     <h4>{ad.titulo}</h4>
-                                    <strong>R$ {ad.preco}</strong>
+                                    <strong>R$ {ad.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>
+
                                     <button className="btn-edit-ad" onClick={() => navigate(`/editar-anuncio/${ad.id}`)}>
-                                        Editar Anúncio
+                                        {ad.status === 'Vendido' ? 'Ver Detalhes' : 'Editar Anúncio'}
                                     </button>
                                 </div>
                             </div>
                         ))}
 
-                        {/* Card para Criar Novo */}
                         <div className="add-new-ad-card" onClick={() => navigate('/criar-anuncio')}>
                             <div className="plus-circle">
                                 <Plus size={32} color="#003b82" />

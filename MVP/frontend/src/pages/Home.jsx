@@ -18,7 +18,8 @@ const Home = () => {
     const anunciosFiltrados = anuncios.filter(item => {
         const matchesBusca = item.titulo.toLowerCase().includes(busca.toLowerCase());
         const matchesCategoria = categoriaSel === '' || item.categoria === categoriaSel;
-        return matchesBusca && matchesCategoria;
+        const estaAtivo = item.status !== 'Vendido'; // NOVA REGRA
+        return matchesBusca && matchesCategoria && estaAtivo;
     });
 
     return (

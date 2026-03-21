@@ -12,7 +12,6 @@
     margin: 0 auto;
 }
 
-/* Sidebar */
 .perfil-card-info {
     background: #fff;
     padding: 2.5rem;
@@ -90,7 +89,6 @@
     background: #f1f5f9;
 }
 
-/* Conteúdo */
 .perfil-content {
     background: #fff;
     padding: 2.5rem;
@@ -135,6 +133,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
+    align-content: start;
+    min-height: 300px;
 }
 
 .perfil-ad-card {
@@ -150,12 +150,40 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    background: #22c55e;
-    color: white;
     font-size: 0.6rem;
     font-weight: 800;
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
+    z-index: 2;
+}
+
+.status-badge.active {
+    background: #22c55e;
+    color: white;
+}
+
+.status-badge.sold {
+    background: #94a3b8;
+    color: white;
+}
+
+.perfil-ad-card.sold-mode {
+    border-color: #e2e8f0;
+    background-color: #fcfcfc;
+}
+
+.perfil-ad-card.sold-mode .perfil-ad-img {
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
+.perfil-ad-card.sold-mode h4,
+.perfil-ad-card.sold-mode strong {
+    color: #94a3b8;
+}
+
+.perfil-ad-card.sold-mode .btn-edit-ad {
+    color: #64748b;
 }
 
 .perfil-ad-img {
@@ -217,4 +245,52 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
+}
+
+.perfil-status-filter-container {
+    margin-bottom: 2rem;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 1rem;
+}
+
+.filter-header h3 {
+    font-size: 1.1rem;
+    color: #1e293b;
+    font-weight: 700;
+}
+
+/* Estilo dos Chips de Filtro */
+.status-chips {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.chip {
+    padding: 0.4rem 1.2rem;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chip:hover {
+    border-color: #003b82;
+    color: #003b82;
+}
+
+.chip.active {
+    background: #003b82;
+    color: #fff;
+    border-color: #003b82;
+    box-shadow: 0 4px 10px rgba(0, 59, 130, 0.2);
 }
