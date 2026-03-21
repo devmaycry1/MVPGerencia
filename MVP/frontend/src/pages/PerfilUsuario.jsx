@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Store, Edit2, Home, UserCircle, Plus } from 'lucide-react';
+import { Store, Edit2, Home, UserCircle, Plus, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import './PerfilUsuario.css';
 
@@ -29,6 +29,13 @@ const PerfilUsuario = () => {
         return true;
     });
 
+    const handleLogout = () => {
+        if (window.confirm("Deseja realmente sair do Mercado DCX?")) {
+            localStorage.removeItem('usuarioMercadoDCX'); // Remove o usuário do navegador
+            navigate('/login'); // Redireciona para o login
+        }
+    };
+
     return (
         <div className="perfil-wrapper">
             <header className="home-header">
@@ -46,9 +53,14 @@ const PerfilUsuario = () => {
                         </div>
                         <h2>{usuarioLogado?.nome || "Usuário"}</h2>
                         <span>{usuarioLogado?.curso || "Estudante"}</span>
-                        <button className="btn-editar-perfil">
-                            <Edit2 size={14} /> Editar Perfil
-                        </button>
+                        <div className="sidebar-actions">
+                            <button className="btn-editar-perfil">
+                                <Edit2 size={14} /> Editar Perfil
+                            </button>
+                            <button className="btn-logout" onClick={handleLogout}>
+                                <LogOut size={14} /> Sair da Conta
+                            </button>
+                        </div>
                     </div>
 
                     <nav className="perfil-menu">
@@ -81,20 +93,20 @@ const PerfilUsuario = () => {
                         <div className="filter-header">
                             <h3>Meus Itens</h3>
                             <div className="status-chips">
-                                <button 
-                                    className={filtroStatus === 'todos' ? 'chip active' : 'chip'} 
+                                <button
+                                    className={filtroStatus === 'todos' ? 'chip active' : 'chip'}
                                     onClick={() => setFiltroStatus('todos')}
                                 >
                                     Todos
                                 </button>
-                                <button 
-                                    className={filtroStatus === 'ativo' ? 'chip active' : 'chip'} 
+                                <button
+                                    className={filtroStatus === 'ativo' ? 'chip active' : 'chip'}
                                     onClick={() => setFiltroStatus('ativo')}
                                 >
                                     Ativos
                                 </button>
-                                <button 
-                                    className={filtroStatus === 'vendido' ? 'chip active' : 'chip'} 
+                                <button
+                                    className={filtroStatus === 'vendido' ? 'chip active' : 'chip'}
                                     onClick={() => setFiltroStatus('vendido')}
                                 >
                                     Vendidos

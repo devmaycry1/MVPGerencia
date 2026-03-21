@@ -249,6 +249,7 @@ textarea {
     background: #15803d;
 }
 
+
 .sold-info-badge {
     background: #f1f5f9;
     color: #64748b;
@@ -267,4 +268,3 @@ input:disabled, select:disabled, textarea:disabled {
     border-color: #e2e8f0 !important;
     opacity: 1;
 }
-

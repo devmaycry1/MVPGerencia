@@ -16,11 +16,10 @@ const EditarAnuncio = () => {
             .catch(err => console.error("Erro ao carregar anúncio:", err));
     }, [id]);
 
-    // Trava de segurança: define se o formulário deve ser bloqueado
     const isVendido = formData?.status === 'Vendido';
 
     const handleChange = (e) => {
-        if (isVendido) return; // Segurança extra no nível da função
+        if (isVendido) return; 
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
@@ -85,7 +84,6 @@ const EditarAnuncio = () => {
                     <p>{isVendido ? 'Este anúncio não pode mais ser editado.' : 'Mantenha as informações do seu item atualizadas.'}</p>
                 </div>
 
-                {/* Alerta Visual de Bloqueio */}
                 {isVendido && (
                     <div className="alert-lock-anuncio">
                         <Lock size={18} />
@@ -122,9 +120,17 @@ const EditarAnuncio = () => {
                             </div>
                         </div>
 
+                        {/* CORREÇÃO AQUI: Adicionado input-group para alinhar a descrição */}
                         <div className="card-form">
-                            <label>Descrição</label>
-                            <textarea name="descricao" value={formData.descricao} onChange={handleChange} disabled={isVendido}></textarea>
+                            <div className="input-group">
+                                <label>Descrição Detalhada</label>
+                                <textarea 
+                                    name="descricao" 
+                                    value={formData.descricao} 
+                                    onChange={handleChange} 
+                                    disabled={isVendido}
+                                ></textarea>
+                            </div>
                         </div>
                     </div>
 
