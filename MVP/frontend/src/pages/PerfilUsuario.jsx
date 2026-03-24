@@ -8,19 +8,26 @@ const PerfilUsuario = () => {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioMercadoDCX'));
     const [meusAnuncios, setMeusAnuncios] = useState([]);
     const [abaAtiva, setAbaAtiva] = useState('meus-anuncios');
-    const [filtroStatus, setFiltroStatus] = useState('todos'); // Novo estado para o filtro
+    const [filtroStatus, setFiltroStatus] = useState('todos');
 
     useEffect(() => {
-        if (usuarioLogado) {
-            fetch(`http://localhost:3001/anuncios?vendedorId=${usuarioLogado.id}`)
-                .then(res => res.json())
-                .then(data => {
-                    const ordenados = data.sort((a, b) => (a.status === 'Vendido' ? 1 : -1));
-                    setMeusAnuncios(ordenados);
-                })
-                .catch(err => console.error("Erro ao carregar seus anúncios:", err));
-        }
-    }, [usuarioLogado?.id]);
+        if (!usuarioLogado) return;
+
+        fetch(`http://localhost:3001/anuncios?vendedorId=${usuarioLogado.id}`)
+            .then(res => res.json())
+            .then(data => {
+                const ordenados = data.sort((a, b) => {
+                    if (a.status === 'Vendido' && b.status !== 'Vendido') return 1;
+                    if (a.status !== 'Vendido' && b.status === 'Vendido') return -1;
+                    return 0;
+                });
+
+                setMeusAnuncios(ordenados);
+            })
+            .catch(err =>
+                console.error("Erro ao carregar seus anúncios:", err)
+            );
+    }, [usuarioLogado]);
 
     const anunciosExibidos = meusAnuncios.filter(ad => {
         if (filtroStatus === 'todos') return true;
@@ -31,8 +38,8 @@ const PerfilUsuario = () => {
 
     const handleLogout = () => {
         if (window.confirm("Deseja realmente sair do Mercado DCX?")) {
-            localStorage.removeItem('usuarioMercadoDCX'); // Remove o usuário do navegador
-            navigate('/login'); // Redireciona para o login
+            localStorage.removeItem('usuarioMercadoDCX');
+            navigate('/login');
         }
     };
 

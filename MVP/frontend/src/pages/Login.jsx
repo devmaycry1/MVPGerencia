@@ -126,7 +126,7 @@ const Login = () => {
                                     }}
                                     onBlur={handleBlur}
                                     className={errosForm.senha ? 'input-error' : ''}
-                                    placeholder="••••••••••"
+                                    placeholder="Sua senha"
                                     required
                                 />
                                 {errosForm.senha && <span style={estiloErro}>{errosForm.senha}</span>}

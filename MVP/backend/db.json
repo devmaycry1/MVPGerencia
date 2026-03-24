@@ -2,10 +2,10 @@
   "usuarios": [
     {
       "id": "584a",
-      "nome": "Carlos Luiz",
-      "email": "carlos.luiz@dcx.ufpb.br",
+      "nome": "Rick Sanchez",
+      "email": "rick.sanchez@dcx.ufpb.br",
       "curso": "Sistemas de Informação",
-      "matricula": "2022063060",
+      "matricula": "2022063064",
       "senha": "Teste1234"
     }
   ],
@@ -38,7 +38,7 @@
       "imagens": [
         "https://m.media-amazon.com/images/I/61a++2OyOsL.jpg"
       ],
-      "vendedor": "Carlos Luiz",
+      "vendedor": "Rick Sanchez",
       "vendedorId": "584a",
       "dataCriacao": "2026-03-20T18:06:59.389Z",
       "imagem": "https://m.media-amazon.com/images/I/61a++2OyOsL.jpg",

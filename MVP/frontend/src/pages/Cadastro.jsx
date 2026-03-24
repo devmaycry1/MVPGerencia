@@ -71,7 +71,7 @@ const Cadastro = () => {
                 return;
             }
 
-            const { confirmarSenha, ...dadosParaSalvar } = formData;
+            const { _confirmarSenha, ...dadosParaSalvar } = formData;
             
             const responseCreate = await fetch('http://localhost:3001/users', {
                 method: 'POST',
