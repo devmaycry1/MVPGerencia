@@ -7,6 +7,15 @@
       "curso": "Sistemas de Informação",
       "matricula": "2022063064",
       "senha": "Teste1234"
+    },
+    {
+      "id": "2559",
+      "nome": "João Pedro",
+      "email": "joao.pedro@dcx.ufpb.br",
+      "curso": "Ciência da Computação",
+      "matricula": "2022043053",
+      "senha": "teste1234",
+      "confirmarSenha": "teste1234"
     }
   ],
   "anuncios": [

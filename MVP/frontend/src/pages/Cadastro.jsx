@@ -85,7 +85,7 @@ const Cadastro = () => {
 
             const { _confirmarSenha, ...dadosParaSalvar } = formData;
 
-            const responseCreate = await fetch('http://localhost:3001/users', {
+            const responseCreate = await fetch('http://localhost:3001/usuarios', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
