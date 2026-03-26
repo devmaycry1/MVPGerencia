@@ -31,8 +31,15 @@ const Cadastro = () => {
     };
 
     const handleBlur = (e) => {
-        const { name, validity } = e.target;
+        const { name, validity, value } = e.target;
         let mensagemErro = obterMensagemErro(name, validity);
+
+        if (name === 'email' && value && !value.endsWith('@dcx.ufpb.br')) {
+            mensagemErro = 'Use seu email institucional (@dcx.ufpb.br).';
+            e.target.setCustomValidity(mensagemErro);
+        } else if (name === 'email') {
+            e.target.setCustomValidity('');
+        }
 
         if (name === 'confirmarSenha' && formData.senha !== formData.confirmarSenha) {
             mensagemErro = 'As senhas não coincidem.';
@@ -47,6 +54,11 @@ const Cadastro = () => {
     const handleCadastro = async (e) => {
         e.preventDefault();
         setErroGlobal('');
+
+        if (!formData.email.endsWith('@dcx.ufpb.br')) {
+            setErroGlobal('Apenas emails @dcx.ufpb.br são permitidos.');
+            return;
+        }
 
         if (!e.target.checkValidity()) {
             setErroGlobal('Por favor, preencha todos os campos corretamente antes de continuar.');
@@ -72,7 +84,7 @@ const Cadastro = () => {
             }
 
             const { _confirmarSenha, ...dadosParaSalvar } = formData;
-            
+
             const responseCreate = await fetch('http://localhost:3001/users', {
                 method: 'POST',
                 headers: {
